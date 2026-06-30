@@ -23,7 +23,6 @@ final class TwigViewServiceProvider extends AbstractServiceProvider
     public const string DEFAULT_EXTENSION = '.twig';
 
     public function __construct(
-        private readonly string $root,
         private readonly string $viewsPath,
         private readonly string $cacheDir = '',
         private readonly bool $debug = false,
@@ -66,7 +65,7 @@ final class TwigViewServiceProvider extends AbstractServiceProvider
             /** @var ViewRegistry $viewRegistry */
             $viewRegistry = $container->get(ViewRegistry::class);
             $this->addExtensions($twig, $viewRegistry->extensions()->all(), $this->debug);
-            $this->addPaths($loader, $this->root, $viewRegistry->paths()->all());
+            $this->addPaths($loader, $viewRegistry->paths()->all());
             $this->addFallbackPath($loader, $this->viewsPath);
 
             return new TwigView(
@@ -96,13 +95,13 @@ final class TwigViewServiceProvider extends AbstractServiceProvider
     }
 
     /**
-     * @param array<string, string> $namespaces
+     * @param array<string, string> $namespaces namespace => absolute filesystem path
      * @throws LoaderError
      */
-    private function addPaths(FilesystemLoader $loader, string $rootPath, array $namespaces): void
+    private function addPaths(FilesystemLoader $loader, array $namespaces): void
     {
         foreach ($namespaces as $namespace => $path) {
-            $loader->addPath(rtrim($rootPath, '/') . '/' . ltrim($path, '/'), $namespace);
+            $loader->addPath($path, $namespace);
         }
     }
 

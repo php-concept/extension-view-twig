@@ -1,7 +1,6 @@
 {
     "name": "php-concept/extension-view-twig",
     "description": "Concept View Twig engine — TwigView implementation",
-    "version": "1.0.0",
     "type": "library",
     "license": "MIT",
     "autoload": {

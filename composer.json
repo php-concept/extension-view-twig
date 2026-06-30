@@ -1,0 +1,22 @@
+{
+    "name": "php-concept/extension-view-twig",
+    "description": "Concept View Twig engine — TwigView implementation",
+    "version": "1.0.0",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Concept\\Extensions\\ViewTwig\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.4",
+        "php-concept/core-2": "^1.0",
+        "php-concept/extension-view": "^1.0",
+        "php-concept/extension-event": "^1.0",
+        "twig/twig": "^3.0",
+        "symfony/console": "^7.2|^8.0",
+        "symfony/filesystem": "^7.2|^8.0",
+        "league/container": "^5.1"
+    }
+}

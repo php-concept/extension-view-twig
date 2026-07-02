@@ -2,6 +2,7 @@
 
 namespace Concept\Extensions\ViewTwig;
 
+use Concept\Core\Container\ContainerDependency;
 use Concept\Extensions\Event\Events\ExtensionAwakened;
 use Concept\Extensions\Event\Support\EventDispatcherResolver;
 use Concept\Extensions\View\Contracts\ViewInterface;
@@ -63,7 +64,7 @@ final class TwigViewServiceProvider extends AbstractServiceProvider
             ]);
 
             /** @var ViewRegistry $viewRegistry */
-            $viewRegistry = $container->get(ViewRegistry::class);
+            $viewRegistry = ContainerDependency::get($container, ViewRegistry::class);
             $this->addExtensions($twig, $viewRegistry->extensions()->all(), $this->debug);
             $this->addPaths($loader, $viewRegistry->paths()->all());
             $this->addFallbackPath($loader, $this->viewsPath);
